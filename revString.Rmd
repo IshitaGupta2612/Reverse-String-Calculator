@@ -1,0 +1,151 @@
+---
+title: "Reveresed String Calculator"
+runtime: shiny
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    social: menu
+    theme: paper
+    source_code: embed
+    vertical_layout: fill
+    
+---
+
+<style>                     
+.navbar {
+  background-color:black;
+  hover-color:yellow;
+}
+
+</style> 
+
+
+
+```{r setup, include=FALSE}
+
+library(flexdashboard)
+library(shiny)
+library(knitr)
+
+```
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+html {
+  height:100%;
+}
+
+body {
+  margin:0;
+}
+
+.bg {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #d4f4fd 50%, #feeaf9 50%, #fddff3 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:4s;
+}
+
+.bg3 {
+  animation-duration:5s;
+}
+
+.content {
+  background-color:rgba(255,255,255,.8);
+  border-radius:.25em;
+  box-shadow:0 0 .25em rgba(0,0,0,.25);
+  box-sizing:border-box;
+  left:50%;
+  padding:10vmin;
+  position:fixed;
+  text-align:center;
+  top:50%;
+  transform:translate(-50%, -50%);
+}
+
+h1 {
+  font-family:monospace;
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+
+
+
+Resources1ÃÂ 0.5ÃÂ 0.25ÃÂRerun
+    </style>
+   
+    <center><title>Document</title></center>
+  </head>
+  <body>
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+  </body>
+</html>
+
+
+
+
+<br><br><br><br><br>
+<table border='0'>
+<tr>
+<td><h4>Enter The String To Be Reversed :</td>
+
+<td>
+```{r}
+textInput("contact", "", "")
+```
+</h4>
+</td>
+</tr>
+</table>
+
+
+
+Column {data-width=20}
+----------------------------------------------------------------------
+
+<h4>The Reversed String is : &nbsp; </h4>
+<h4>
+
+```{r}
+
+ContactInput <- reactive({c(input$contact)})
+
+textOutput("export")
+
+output$export <- renderText({
+temp2 = toString(ContactInput())
+string_split <- strsplit(temp2, " ")[[1]]
+string_split
+
+reversed_string <- paste(rev(string_split), collapse=" ")
+
+p<- reversed_string
+  return(p)
+
+}) 
+
+
+```
+</h4>
+
